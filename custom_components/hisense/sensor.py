@@ -351,6 +351,17 @@ class HisenseWasherSensor(HisenseEntity, SensorEntity):
     def native_value(self):
         return self.status.get(self.entity_description.key)
 
+    @property
+    def extra_state_attributes(self):
+        if not self.status.get("model_profile"):
+            return None
+        last_read = self.coordinator.last_success_time
+        return {
+            "model_profile": self.status["model_profile"],
+            "run_state_code": self.status.get("run_state"),
+            "last_read_time": last_read.isoformat() if last_read else None,
+        }
+
 
 class HisenseWasherProtocolSensor(HisenseEntity, SensorEntity):
     """Expose a sanitized read-only washer protocol snapshot."""

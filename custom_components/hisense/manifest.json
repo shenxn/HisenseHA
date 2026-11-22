@@ -2,12 +2,14 @@
   "domain": "hisense",
   "name": "Hisense Smart Devices",
   "config_flow": true,
-  "version": "1.7.9",
+  "version": "1.7.9.post1",
   "integration_type": "device",
-  "documentation": "https://github.com/manymuch/HisenseHA",
+  "documentation": "https://github.com/shenxn/HisenseHA",
   "requirements": [],
   "iot_class": "cloud_polling",
   "codeowners": [
-    "@manymuch"
-  ]
+    "@manymuch",
+    "@shenxn"
+  ],
+  "issue_tracker": "https://github.com/shenxn/HisenseHA/issues"
 }

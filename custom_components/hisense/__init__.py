@@ -64,6 +64,7 @@ async def async_setup_entry(hass: core.HomeAssistant, entry: config_entries.Conf
 
         if device_type == "洗衣机":
             client = HiSenseWasher(
+                device_model=device_name,
                 wifi_id=wifi_id,
                 device_id=device_id,
                 refresh_token=refresh_token,

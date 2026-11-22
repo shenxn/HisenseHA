@@ -1,5 +1,7 @@
 {
-    "name": "Hisense Smart Devices",
-    "render_readme": true,
-    "hide_default_branch": true
+  "name": "Hisense Smart Devices",
+  "render_readme": true,
+  "hide_default_branch": true,
+  "zip_release": true,
+  "filename": "hisense.zip"
 }

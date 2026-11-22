@@ -7,6 +7,8 @@ import logging
 import time
 import uuid
 
+from .washer_models import parse_asko_w7106r, supports_asko_washer
+
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 from .fridge_const import (
@@ -925,8 +927,9 @@ class _HiSenseDevice:
 class HiSenseWasher(_HiSenseDevice):
     """Read-only AIHome client for Hisense washers."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, device_model="", **kwargs):
         super().__init__(*args, **kwargs)
+        self.device_model = device_model
         self.status = {
             "protocol_payload_length": 0,
             "protocol_payload_sha256": "",
@@ -985,6 +988,9 @@ class HiSenseWasher(_HiSenseDevice):
         return values
 
     def _update_status_from_result(self, result) -> bool:
+        if supports_asko_washer(self.device_model):
+            # The legacy 00f array offsets are not verified for this model.
+            return False
         try:
             values = self._extract_status_values(result)
         except (TypeError, ValueError):
@@ -1061,6 +1067,11 @@ class HiSenseWasher(_HiSenseDevice):
 
     def _update_from_states(self, states: dict):
         """Parse the named AIHome states map reported by newer washers."""
+
+        if supports_asko_washer(self.device_model):
+            updates = parse_asko_w7106r(states)
+            self._store_states(updates, states)
+            return set(updates)
 
         def _flag(key):
             value = states.get(key)

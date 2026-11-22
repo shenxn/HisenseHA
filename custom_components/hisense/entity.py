@@ -52,6 +52,10 @@ class HisenseEntity(CoordinatorEntity[HisenseDataUpdateCoordinator]):
     @property
     def available(self) -> bool:
         """Use the refrigerator online flag or standard coordinator availability."""
+        if self.coordinator.device_type == "洗衣机" and self.status.get("model_profile"):
+            return super().available and (
+                self._attr_available_offline or self.status.get("online") is not False
+            )
         if self.coordinator.device_type != "冰箱":
             return super().available
         if self._attr_available_offline:

@@ -1,3 +1,5 @@
+> 个人 fork：新增 ASKO W7106R.W.CN 精确型号只读适配，保留原实体 ID。详见[适配范围、刷新限制及验证](docs/ASKO-W7106R-W-CN.md)。
+
 # 海信智能家居（HisenseHA）
 ![Hisense](hisense-electronics.png)
 
@@ -10,7 +12,7 @@
 
 ## 环境要求
 
-- **Home Assistant** 2025.6 或更高版本（若使用更旧的核心，请查看[发行说明](https://github.com/manymuch/HisenseHA/releases)）。
+- **Home Assistant** 2025.6 或更高版本（若使用更旧的核心，请查看[发行说明](https://github.com/shenxn/HisenseHA/releases)）。
 - 能在官方手机 **海信爱家 App** 中正常登录的海信账号（用户名与密码一致）。
 - 空调、冰箱、受支持的洗衣机或干衣机需已在 App 中完成配网，并归属到某个 **家庭**。
 
@@ -24,7 +26,7 @@
 
 1. 在 Home Assistant 中打开 **HACS**。
 2. 进入 **集成** → 右上角菜单（⋮）→ **自定义仓库**。
-3. 添加仓库 `https://github.com/manymuch/HisenseHA`，类别选 **集成（Integration）**。
+3. 添加仓库 `https://github.com/shenxn/HisenseHA`，类别选 **集成（Integration）**。
 4. 在 **Hisense Smart Devices** 卡片中点击 **下载**。
 5. 按提示 **重启** Home Assistant。
 
